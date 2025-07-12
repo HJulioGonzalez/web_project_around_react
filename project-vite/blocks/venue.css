@@ -1,0 +1,127 @@
+.venue {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 282px;
+}
+
+.venue__del-button {
+  position: absolute;
+  right: 15px;
+  top: 18px;
+  background: url(../images/delete_WHITE.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 18px;
+  height: 19.3px;
+  box-shadow: 0 6px 12px rgba(100, 100, 100, 0.5);
+  border: none;
+}
+
+.venue__del-button:hover {
+  opacity: 60%;
+}
+
+.venue__picture {
+  border-radius: 10px 10px 0 0;
+  height: 282px;
+  object-fit: cover;
+}
+
+.venue__info {
+  padding: 25px 15px 24px 21px;
+  background-color: #fff;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 0 0 10px 10px;
+}
+
+.venue__info-name {
+  color: #000;
+  margin: 0;
+  font-family: "Inter Black";
+  font-size: 24px;
+  line-height: 1.21;
+  width: auto;
+  height: 30px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.venue__info-likebutton {
+  align-self: center;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 21px;
+  height: 19px;
+  background: url("../images/like_BLACK.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  border: none;
+}
+
+.venue__info-likebutton:hover {
+  opacity: 60%;
+}
+
+@media screen and (min-width: 846px) and (max-width: 1280px) {
+  .venue {
+    width: 32%;
+  }
+
+  .venue__info-name {
+    font-size: 1.5vw;
+  }
+
+  .venue__picture {
+    height: 22.035vw;
+    object-fit: cover;
+  }
+}
+
+@media screen and (min-width: 1281px) {
+  .venue {
+    width: 32%;
+    height: 35%;
+  }
+}
+
+@media screen and (min-width: 726px) and (max-width: 845px) {
+  .venue {
+    width: 48%;
+  }
+
+  .venue__info-name {
+    font-size: 2.8vw;
+  }
+
+  .venue__picture {
+    height: 35vw;
+  }
+}
+
+@media screen and (min-width: 570px) and (max-width: 725px) {
+  .venue {
+    width: 48%;
+  }
+
+  .venue__info-name {
+    font-size: 3vw;
+  }
+
+  .venue__picture {
+    height: 45vw;
+  }
+}
+
+@media screen and (min-width: 320px) and (max-width: 569px) {
+  .venue {
+    width: 100%;
+    margin: auto;
+  }
+
+  .venue__picture {
+    height: 80vw;
+  }
+}
