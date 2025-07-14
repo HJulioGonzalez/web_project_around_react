@@ -3,17 +3,20 @@ import ImagePopup from "../ImagePopup/ImagePopup";
 import { useState } from "react";
 export default function Card(props) {
   const [popup, setPopup] = useState(null);
-  const ImgPopup = { title: "", children: <ImagePopup /> };
   const { name, link, isLiked } = props.card;
+
   function handleOpenPopup(popup) {
     setPopup(popup);
   }
   function handleClosePopup() {
     setPopup(null);
   }
-  function testing() {
-    console.log("trying to popup image");
-  }
+  const ImgPopup = {
+    title: "",
+    children: (
+      <ImagePopup onClose={handleClosePopup} ImgLink={link} ImgName={name} />
+    ),
+  };
   return (
     <li className="venue">
       <button className="venue__del-button"></button>
