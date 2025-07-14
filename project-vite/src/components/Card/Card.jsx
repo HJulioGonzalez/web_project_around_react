@@ -28,7 +28,13 @@ export default function Card(props) {
       />
       <div className="venue__info">
         <p className="venue__info-name">{name}</p>
-        <button className="venue__info-likebutton" />
+        <button
+          className={
+            isLiked
+              ? "venue__info-likebutton_liked"
+              : "venue__info-likebutton_unliked"
+          }
+        />
       </div>
       {popup && (
         <Popup onClose={handleClosePopup} title={popup.title}>

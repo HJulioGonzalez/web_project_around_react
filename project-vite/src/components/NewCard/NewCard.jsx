@@ -30,7 +30,9 @@ export default function NewCard() {
       <span className="url-input-error form__input-error">
         Please, fill this field
       </span>
-      <button className="new-picture__button form__submit">Save</button>
+      <button className="new-picture__button form__submit" type="Button">
+        Save
+      </button>
     </form>
   );
 }

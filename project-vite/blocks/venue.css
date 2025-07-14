@@ -61,7 +61,39 @@
   border: none;
 }
 
+.venue__info-likebutton_liked {
+  align-self: center;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 21px;
+  height: 19px;
+  background: url("../images/like_ACTIVE.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  border: none;
+}
+
+.venue__info-likebutton_unliked {
+  align-self: center;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 21px;
+  height: 19px;
+  background: url("../images/like_BLACK.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  border: none;
+}
+
 .venue__info-likebutton:hover {
+  opacity: 60%;
+}
+
+.venue__info-likebutton_liked:hover {
+  opacity: 60%;
+}
+
+.venue__info-likebutton_unliked:hover {
   opacity: 60%;
 }
 
