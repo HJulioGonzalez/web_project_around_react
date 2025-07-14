@@ -1,12 +1,13 @@
 # React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+- Sprint 13: el proyecto de Sprint 12 ha sido migrado correctamente hacia el Sprint 13 mediante la utilizacion de React + Vite
 
-Currently, two official plugins are available:
+- el flag "--open" fue añadido exitosamente al script en package.json, por lo tanto se abre automaticamente en el navegador
+- se estableció el puerto 3000 exitosamente en el archivo vite.config.json
+- todos los estilos css se migraron exitosamente mediante el uso de un archivo primario index.css y los respectivos archivos en el directorio blocks. Tambien se copiaron los directorios images y vendor
+- se creo un directorio components, donde se alojan los componentes Card, EditProfile, Footer, Header, ImagePopup, Main y NewCard, cada uno con su archivo .jsx respectivo
+- el component Popup funciona efectivamente cuando se hace click sobre el icono para añadir una nueva imagen, en el icono de cambiar información del perfil y sobre la imagen del perfil. Así mismo, se implementó el cierre del formulario presionando el icono de cerrar
+- las tarjetas se renderizan mediante el component Card.jsx, utilizando informacion ficticia
+- se creo el component ImagePopup para que al momento de hacer click sobre una imagen, se abra expandida con el nombre del destino
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Pagina web desarrollada con HTML, CSS, JavaScript y React con diseño responsivo
