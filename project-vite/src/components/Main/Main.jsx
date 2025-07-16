@@ -69,14 +69,6 @@ export default function Main() {
   function handleClosePopup() {
     setPopup(null);
   }
-
-  function changeIconOn() {
-    console.log("change icon activated");
-  }
-
-  function changeIconOff() {
-    console.log("change icon deactivated");
-  }
   return (
     <main className="content">
       <div className="author">
@@ -84,8 +76,6 @@ export default function Main() {
           src={profilePhoto}
           alt="AuthorPicture"
           className="author__picture"
-          // onMouseEnter={changeIconOn}
-          // onMouseLeave={changeIconOff}
           onClick={() => handleOpenPopup(editProfileImg)}
         />
         <div className="author__info">
