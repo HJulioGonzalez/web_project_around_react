@@ -1,31 +1,3 @@
-/* .edit-pic {
-  background-color: rgba(0, 0, 0, 0.5);
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  overflow-y: auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column-reverse;
-  box-sizing: border-box;
-  padding: 0;
-  z-index: 1000;
-} */
-
-/* .edit-pic-closebuttton:hover {
-  opacity: 60%;
-} */
-
-/* .edit-pic__title {
-  font-size: 24px;
-  font-family: "Inter Black";
-  line-height: 1.21;
-  height: 23px;
-} */
-
 .edit-pic {
   width: 358px;
   height: 260px;
@@ -37,30 +9,6 @@
   box-sizing: border-box;
   position: relative;
 }
-
-/* .edit-pic__closebuttton {
-  position: absolute;
-  top: -50px;
-  right: -50px;
-  width: 57.56px;
-  height: 57.56px;
-  display: flex;
-  background: url(../images/close_button_WHITE.svg);
-  background-repeat: no-repeat;
-  background-position: center;
-  cursor: pointer;
-  border: none;
-} */
-
-/* .edit-pic__closebuttton:hover {
-  opacity: 60%;
-} */
-
-/* .edit-pic__container-title {
-  font-weight: 900;
-  font-size: 24px;
-  line-height: 1.21;
-} */
 
 .edit-pic__img-URL {
   margin-top: 60px;
@@ -102,7 +50,6 @@
   line-height: 1.21;
   border-radius: 2px;
   opacity: 20%;
-  border: 1px solid #000;
 }
 
 .edit-pic__button:hover {
@@ -113,16 +60,6 @@
   .edit-pic {
     width: 88.125%;
   }
-
-  /* .edit-pic-closebuttton {
-    top: -50px;
-    right: 2.23px;
-    width: 36.77px;
-    height: 36.77px;
-    background: url(../images/close_button_WHITE320.svg);
-    background-repeat: no-repeat;
-    background-position: center;
-  } */
 }
 
 @media screen and (width: 320px) {
@@ -131,28 +68,8 @@
     height: 322px;
   }
 
-  /* .edit-pic__container-title {
-    font-size: 18px;
-    line-height: 1.21;
-  } */
-
-  /* .edit-pic__container-name {
-    margin: 76px 0 0;
-    height: 26px;
-  } */
-
   .edit-pic__button {
     font-size: 14px;
     line-height: 1.21;
   }
-
-  /* .edit-pic-closebuttton {
-    top: -50px;
-    right: 2.23px;
-    width: 36.77px;
-    height: 36.77px;
-    background: url(../images/close_button_WHITE320.svg);
-    background-repeat: no-repeat;
-    background-position: center;
-  } */
 }

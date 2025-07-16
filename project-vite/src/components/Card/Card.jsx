@@ -4,13 +4,17 @@ import { useState } from "react";
 export default function Card(props) {
   const [popup, setPopup] = useState(null);
   const { name, link, isLiked } = props.card;
-
+  const [likeStatus, setLike] = useState(false);
   function handleOpenPopup(popup) {
     setPopup(popup);
   }
   function handleClosePopup() {
     setPopup(null);
   }
+  function handleLike() {
+    setLike(!likeStatus);
+  }
+
   const ImgPopup = {
     title: "",
     children: (
@@ -30,10 +34,11 @@ export default function Card(props) {
         <p className="venue__info-name">{name}</p>
         <button
           className={
-            isLiked
+            likeStatus
               ? "venue__info-likebutton_liked"
               : "venue__info-likebutton_unliked"
           }
+          onClick={handleLike}
         />
       </div>
       {popup && (

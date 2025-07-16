@@ -4,6 +4,9 @@ export default function Popup(props) {
   function outsideClosing(e) {
     e.currentTarget === e.target && onClose();
   }
+  function outsideClosing2(e) {
+    console.log("habib");
+  }
   useEffect(() => {
     const escClosing = (event) => {
       event.key === "Escape" && onClose();
@@ -15,7 +18,10 @@ export default function Popup(props) {
   }, []);
   return (
     <div className="popup" onClick={outsideClosing}>
-      <div className={`${title ? "popup__container" : "prompted-image"}`}>
+      <div
+        className={`${title ? "popup__container" : "prompted-image"}`}
+        onClick={outsideClosing}
+      >
         {title && (
           <button
             aria-label="Close modal"

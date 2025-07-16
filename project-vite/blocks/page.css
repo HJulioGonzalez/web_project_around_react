@@ -1,6 +1,6 @@
 .page {
   max-width: 880px;
-  /* max-height: 720px; */
+
   font-family: "Inter Regular";
   line-height: normal;
   margin: auto;
@@ -13,7 +13,6 @@
 
 @media screen and (min-width: 1281px) {
   .page {
-    /* padding: auto; */
     max-width: 100%;
     margin: 0;
   }
