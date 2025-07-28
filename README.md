@@ -13,3 +13,5 @@
 - se creo el component ImagePopup para que al momento de hacer click sobre una imagen, se abra expandida con el nombre del destino
 
 Pagina web desarrollada con HTML, CSS, JavaScript y React con diseño responsivo
+
+Habib Julio
