@@ -49,7 +49,7 @@
   white-space: nowrap;
 }
 
-/* .venue__info-likebutton {
+.venue__info-likebutton {
   align-self: center;
   background-repeat: no-repeat;
   background-position: center;
@@ -57,18 +57,10 @@
   height: 19px;
   background: url("../images/like_BLACK.svg");
   border: none;
-} */
+}
 
 .venue__info-likebutton_liked {
-  align-self: center;
-  background-repeat: no-repeat;
-  background-position: center;
-  width: 21px;
-  height: 19px;
   background: url("../images/like_ACTIVE.png");
-  background-repeat: no-repeat;
-  background-position: center;
-  border: none;
 }
 
 .venue__info-likebutton_unliked {

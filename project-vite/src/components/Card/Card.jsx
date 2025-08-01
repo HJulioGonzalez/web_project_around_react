@@ -1,10 +1,13 @@
 import Popup from "../Main/components/Popup/Popup";
 import ImagePopup from "../ImagePopup/ImagePopup";
 import { useState } from "react";
+import {api} from "../../utils/api.js";
 export default function Card(props) {
   const [popup, setPopup] = useState(null);
-  const { name, link, isLiked } = props.card;
-  const [likeStatus, setLike] = useState(false);
+  const { name, link, isLiked, _id } = props.card;
+  const cardLikeButtonClassName = `venue__info-likebutton ${
+        isLiked ? "venue__info-likebutton_liked" : ''
+    }`
   function handleOpenPopup(popup) {
     setPopup(popup);
   }
@@ -12,7 +15,12 @@ export default function Card(props) {
     setPopup(null);
   }
   function handleLike() {
-    setLike(!likeStatus);
+    api.changeLikeStatus(_id, isLiked).then(data=>{
+      console.log(data)
+    }).catch((err) => {
+      console.log(`Error: ${err} - ${err.status}`);
+      return [];
+    })
   }
 
   const ImgPopup = {
@@ -34,9 +42,7 @@ export default function Card(props) {
         <p className="venue__info-name">{name}</p>
         <button
           className={
-            likeStatus
-              ? "venue__info-likebutton_liked"
-              : "venue__info-likebutton_unliked"
+            cardLikeButtonClassName
           }
           onClick={handleLike}
         />
