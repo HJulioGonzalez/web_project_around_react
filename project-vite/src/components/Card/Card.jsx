@@ -4,7 +4,9 @@ import { useState } from "react";
 import {api} from "../../utils/api.js";
 export default function Card(props) {
   const [popup, setPopup] = useState(null);
-  const { name, link, isLiked, _id } = props.card;
+  const { card, onClickLike } = props;
+  const { name, link, isLiked, _id } = card;
+
   const cardLikeButtonClassName = `venue__info-likebutton ${
         isLiked ? "venue__info-likebutton_liked" : ''
     }`
@@ -43,7 +45,7 @@ export default function Card(props) {
           className={
             cardLikeButtonClassName
           }
-          onClick={onCardLike}
+          onClick={null}
         />
       </div>
       {popup && (

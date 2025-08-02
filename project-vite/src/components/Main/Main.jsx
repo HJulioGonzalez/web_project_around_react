@@ -54,8 +54,8 @@ export default function Main() {
     })
   }
 
-  function testing(){
-    console.log("habib")
+  function testing(element){
+    console.log(element)
   }
 
   return (
@@ -95,7 +95,7 @@ export default function Main() {
       </div>
       <ul className="venues">
         {cards.map((card) => (
-          <Card key={card._id} card={card} onCardLike={testing}/>
+          <Card key={card._id} card={card} onCardLike={testing(card.isLiked)}/>
         ))}
       </ul>
       {popup && (
