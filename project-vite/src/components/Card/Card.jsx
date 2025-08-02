@@ -14,10 +14,9 @@ export default function Card(props) {
   function handleClosePopup() {
     setPopup(null);
   }
-  function handleLike() {
-    api.changeLikeStatus(_id, isLiked).then(data=>{
-      console.log(data)
-    }).catch((err) => {
+  async function handleLike() {
+    console.log(isLiked)
+    await api.changeLikeStatus(_id, isLiked).then(data=>console.log("testing await methods, it is supposed to work sync, not async")).catch((err) => {
       console.log(`Error: ${err} - ${err.status}`);
       return [];
     })

@@ -27,15 +27,16 @@ class Api {
     }
 
    async changeLikeStatus(cardId, likeStatus){
-        console.log(cardId, likeStatus)
+        const method = likeStatus? 'DELETE': 'PUT';
         this._likeInfoLink = `${this._baseUrl}/cards/${cardId}/likes`;
         const res = await fetch(this._likeInfoLink, {
-            method: 'PUT',
+            method: method,
             headers: {
                 authorization: this._headers.authorization,
             },
         });
-        return await res.json();
+        const data = await res.json();
+        return data
     }
 }
 
