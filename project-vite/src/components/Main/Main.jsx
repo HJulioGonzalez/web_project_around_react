@@ -46,6 +46,17 @@ export default function Main() {
   function handleCloseLoading(){
     setLoadingState(null)
   }
+  async function handleCardLike(card){
+    const isLiked = card.isLiked;
+    await api.changeLikeStatus(card._id, isLiked).catch((err) => {
+      console.log(`Error: ${err} - ${err.status}`);
+      return [];
+    })
+  }
+
+  function testing(){
+    console.log("habib")
+  }
 
   return (
     <main className="content">
@@ -84,7 +95,7 @@ export default function Main() {
       </div>
       <ul className="venues">
         {cards.map((card) => (
-          <Card key={card._id} card={card} />
+          <Card key={card._id} card={card} onCardLike={testing}/>
         ))}
       </ul>
       {popup && (
