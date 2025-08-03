@@ -4,7 +4,7 @@ import { useState } from "react";
 import {api} from "../../utils/api.js";
 export default function Card(props) {
   const [popup, setPopup] = useState(null);
-  const { card, onCardLike } = props;
+  const { card, onCardLike, onCardDelete } = props;
   const { name, link, isLiked, _id } = card;
 
   const cardLikeButtonClassName = `venue__info-likebutton ${
@@ -20,6 +20,10 @@ export default function Card(props) {
     onCardLike();
   }
 
+  function handleDeleteClick(){
+    onCardDelete();
+  }
+
   const ImgPopup = {
     title: "",
     children: (
@@ -28,7 +32,7 @@ export default function Card(props) {
   };
   return (
     <li className="venue">
-      <button className="venue__del-button"></button>
+      <button className="venue__del-button" onClick={handleDeleteClick}></button>
       <img
         className="venue__picture"
         src={link}

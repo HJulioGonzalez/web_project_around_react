@@ -58,6 +58,10 @@ export default function Main() {
 
   async function handleCardDelete(card){
     console.log("this card will be deleted: ", card.name)
+    await api.deleteCard(card._id).then((deletedCard) => setCards((state)=> state.filter((currentCard)=>currentCard._id !== card._id))).catch((err) => {
+      console.log(`Error: ${err} - ${err.status}`);
+      return [];
+    })
   }
 
   return (
@@ -97,7 +101,7 @@ export default function Main() {
       </div>
       <ul className="venues">
         {cards.map((card) => (
-          <Card key={card._id} card={card} onCardLike={()=>{handleCardLike(card)}} />
+          <Card key={card._id} card={card} onCardLike={()=>{handleCardLike(card)}} onCardDelete={()=>{handleCardDelete(card)}} />
         ))}
       </ul>
       {popup && (

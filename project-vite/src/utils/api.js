@@ -38,6 +38,17 @@ class Api {
         const data = await res.json();
         return data
     }
+
+    async deleteCard(cardId){
+        this._cardLink = `${this._baseUrl}/cards/${cardId}`;
+        const res = await fetch(this._cardLink, {
+            method: "DELETE",
+            headers: {
+                authorization: this._headers.authorization,
+            },
+        });
+        return await res.json();
+    }
 }
 
 export const api = new Api({
