@@ -1,4 +1,12 @@
+import { useState, useContext } from 'react'; 
+import {CurrentUserContext} from "../../contexts/CurrentUserContext.js";
 export default function EditProfile() {
+  const currentUser = useContext(CurrentUserContext);
+  const [name, setName] = useState(currentUser.name);
+  const handleNameChange = (e) => {
+    setName(e.target.value);
+    
+  };
   return (
     <form className="edit-info form" noValidate>
       <input
@@ -9,7 +17,8 @@ export default function EditProfile() {
         maxLength="40"
         required
         name="name"
-        autoComplete="on"
+        value={name}
+        autoComplete="on" onChange={handleNameChange}
       />
       <span className="name-input-error form__input-error">
         Please, fill this field
