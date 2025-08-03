@@ -50,7 +50,19 @@ class Api {
     }
 
     async setUserInfo(newInfo){
-        console.log(newInfo)
+        this._userInfoLink = `${this._baseUrl}/users/me`;
+        const res = await fetch(this._userInfoLink, {
+            method: "PATCH",
+            headers: {
+                authorization: this._headers.authorization,
+                 "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+        name: newInfo.name,
+        about: newInfo.about,
+      })
+        });
+        return await res.json();
     }
 }
 

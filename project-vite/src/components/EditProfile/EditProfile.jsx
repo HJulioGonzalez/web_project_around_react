@@ -1,7 +1,7 @@
-import { useState, useContext } from 'react'; 
+import React, { useState, useContext } from 'react'; 
 import {CurrentUserContext} from "../../contexts/CurrentUserContext.js";
 export default function EditProfile() {
-  const currentUser = useContext(CurrentUserContext);
+  const {currentUser, handleUpdateUser } = useContext(CurrentUserContext);
   const [name, setName] = useState(currentUser.name);
   const [description, setDescription] = useState(currentUser.about);
   const handleNameChange = (e) => {
@@ -9,10 +9,15 @@ export default function EditProfile() {
     
   };
   const handleDescriptionChange = (e)=>{
-      setDescription(e.target.value)
-  }
+    setDescription(e.target.value)
+  };
+  const handleSubmit = (event) => {
+    event.preventDefault(); 
+
+    handleUpdateUser({ name, about: description }); // Actualiza la información del usuario
+  };
   return (
-    <form className="edit-info form" noValidate>
+    <form className="edit-info form" noValidate onSubmit={handleSubmit}>
       <input
         type="text"
         className="edit-info__name form__input"

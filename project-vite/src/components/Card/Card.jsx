@@ -2,6 +2,7 @@ import Popup from "../Main/components/Popup/Popup";
 import ImagePopup from "../ImagePopup/ImagePopup";
 import { useState } from "react";
 import {api} from "../../utils/api.js";
+
 export default function Card(props) {
   const [popup, setPopup] = useState(null);
   const { card, onCardLike, onCardDelete } = props;

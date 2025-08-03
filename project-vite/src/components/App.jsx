@@ -17,14 +17,23 @@ function App() {
     }, []);
 
     const handleUpdateUser = (data) =>{
-        api.setUserInfo(data)
+        api.setUserInfo(data).then((newData) => {
+        setCurrentUser(newData);
+      }).catch((err) => {
+            console.log(`Error: ${err} - ${err.status}`);
+            return [];
+        });
     }
+
+    function testing(){
+    console.log("testing levantando el estado")
+  }
   return (
     <>
         <CurrentUserContext.Provider value={{ currentUser, handleUpdateUser }}>
             <div className="page">
                 <Header />
-                <Main />
+                <Main whatever={testing} />
                 <Footer />
             </div>
         </CurrentUserContext.Provider>

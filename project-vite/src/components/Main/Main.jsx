@@ -8,7 +8,8 @@ import {api} from "../../utils/api.js";
 import InfoLoading from "../infoLoading/infoLoading";
 import {CurrentUserContext} from "../../contexts/CurrentUserContext.js";
 
-export default function Main() {
+export default function Main(props) {
+  const {whatever} = props
   const [popup, setPopup] = useState(null);
   const [loadingState, setLoadingState] = useState(null)
   const [cards, setCards] = useState([]);
@@ -18,9 +19,9 @@ export default function Main() {
     title: "Change Profile Photo",
     children: <EditAvatar />,
   };
-  const userInfo = React.useContext(CurrentUserContext);
+  // const userInfo = React.useContext(CurrentUserContext);
   const { currentUser } = React.useContext(CurrentUserContext);
-  const {name, about, avatar, _id} = userInfo;
+  const {name, about, avatar, _id} = currentUser;
   useEffect(() => {
     handleLoading(true);
     api.getCardInfo().then(data=>{
@@ -76,6 +77,7 @@ export default function Main() {
               className="author__picture"
               onClick={() => {
                 handleOpenPopup(editProfileImg);
+                whatever();
               }
               }
           />
