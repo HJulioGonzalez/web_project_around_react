@@ -49,6 +49,10 @@ class Api {
         });
         return await res.json();
     }
+
+    async setUserInfo(newInfo){
+        console.log(newInfo)
+    }
 }
 
 export const api = new Api({

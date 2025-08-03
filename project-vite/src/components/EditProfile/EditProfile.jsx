@@ -3,10 +3,14 @@ import {CurrentUserContext} from "../../contexts/CurrentUserContext.js";
 export default function EditProfile() {
   const currentUser = useContext(CurrentUserContext);
   const [name, setName] = useState(currentUser.name);
+  const [description, setDescription] = useState(currentUser.about);
   const handleNameChange = (e) => {
     setName(e.target.value);
     
   };
+  const handleDescriptionChange = (e)=>{
+      setDescription(e.target.value)
+  }
   return (
     <form className="edit-info form" noValidate>
       <input
@@ -31,7 +35,8 @@ export default function EditProfile() {
         maxLength="200"
         required
         name="job"
-        autoComplete="on"
+        value={description}
+        autoComplete="on" onChange={handleDescriptionChange}
       />
       <span className="job-input-error form__input-error">
         Please, fill this field

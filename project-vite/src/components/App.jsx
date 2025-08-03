@@ -13,12 +13,15 @@ function App() {
         }).catch((err) => {
             console.log(`Error: ${err} - ${err.status}`);
             return [];
-        })
-
+        });
     }, []);
+
+    const handleUpdateUser = (data) =>{
+        api.setUserInfo(data)
+    }
   return (
     <>
-        <CurrentUserContext.Provider value={currentUser}>
+        <CurrentUserContext.Provider value={{ currentUser, handleUpdateUser }}>
             <div className="page">
                 <Header />
                 <Main />

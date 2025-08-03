@@ -19,6 +19,7 @@ export default function Main() {
     children: <EditAvatar />,
   };
   const userInfo = React.useContext(CurrentUserContext);
+  const { currentUser } = React.useContext(CurrentUserContext);
   const {name, about, avatar, _id} = userInfo;
   useEffect(() => {
     handleLoading(true);
