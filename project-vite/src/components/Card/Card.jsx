@@ -4,7 +4,7 @@ import { useState } from "react";
 import {api} from "../../utils/api.js";
 export default function Card(props) {
   const [popup, setPopup] = useState(null);
-  const { card, onClickLike } = props;
+  const { card, onCardLike } = props;
   const { name, link, isLiked, _id } = card;
 
   const cardLikeButtonClassName = `venue__info-likebutton ${
@@ -16,13 +16,9 @@ export default function Card(props) {
   function handleClosePopup() {
     setPopup(null);
   }
-  // async function handleLike() {
-  //   console.log(isLiked)
-  //   await api.changeLikeStatus(_id, isLiked).then(data=>console.log("testing await methods, it is supposed to work sync, not async")).catch((err) => {
-  //     console.log(`Error: ${err} - ${err.status}`);
-  //     return [];
-  //   })
-  // }
+  function handleLikeClick(){
+    onCardLike();
+  }
 
   const ImgPopup = {
     title: "",
@@ -45,7 +41,7 @@ export default function Card(props) {
           className={
             cardLikeButtonClassName
           }
-          onClick={null}
+          onClick={handleLikeClick}
         />
       </div>
       {popup && (

@@ -11,7 +11,7 @@ import {CurrentUserContext} from "../../contexts/CurrentUserContext.js";
 export default function Main() {
   const [popup, setPopup] = useState(null);
   const [loadingState, setLoadingState] = useState(null)
-  const [cards, setCard] = useState([]);
+  const [cards, setCards] = useState([]);
   const newCardPopup = { title: "New Place", children: <NewCard /> };
   const editProfileInfo = { title: "Edit Profile", children: <EditProfile /> };
   const editProfileImg = {
@@ -25,7 +25,7 @@ export default function Main() {
     api.getCardInfo().then(data=>{
       setTimeout(()=>{
         handleCloseLoading();
-        setCard(data);
+        setCards(data);
         console.log(data)
       },3000)
     }).catch((err) => {
@@ -46,16 +46,18 @@ export default function Main() {
   function handleCloseLoading(){
     setLoadingState(null)
   }
+
   async function handleCardLike(card){
-    const isLiked = card.isLiked;
-    await api.changeLikeStatus(card._id, isLiked).catch((err) => {
+    await api.changeLikeStatus(card._id, !card.isLiked).then((newCard) => {
+        setCards((state) => state.map((currentCard) => currentCard._id === card._id ? newCard : currentCard));
+    }).catch((err) => {
       console.log(`Error: ${err} - ${err.status}`);
       return [];
     })
   }
 
-  function testing(element){
-    console.log(element)
+  async function handleCardDelete(card){
+    console.log("this card will be deleted: ", card.name)
   }
 
   return (
@@ -95,7 +97,7 @@ export default function Main() {
       </div>
       <ul className="venues">
         {cards.map((card) => (
-          <Card key={card._id} card={card} onCardLike={testing(card.isLiked)}/>
+          <Card key={card._id} card={card} onCardLike={()=>{handleCardLike(card)}} />
         ))}
       </ul>
       {popup && (
