@@ -65,7 +65,20 @@ class Api {
         return await res.json();
     }
 
-    async setNewAvatar(){}
+    async setNewAvatar(newAvatar){
+        this._newAvatarLink = `${this._baseUrl}/users/me/avatar`;
+        const res = await fetch(this._newAvatarLink, {
+            method: "PATCH",
+            headers: {
+                authorization: this._headers.authorization,
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                avatar: newAvatar.avatar
+            })
+        });
+        return await res.json();
+    }
 }
 
 export const api = new Api({

@@ -27,8 +27,15 @@ function App() {
         });
     }
     const handleUpdateAvatar = (data) => {
-        console.log("new Avatar set up")
+        api.setNewAvatar(data).then(newData=>{
+            setCurrentUser(newData);
+            handleClosePopup();}).catch((err) => {
+            console.log(`Error: ${err} - ${err.status}`);
+            return [];
+        });
+
     }
+    const handleNewCard = (data) => {console.log(data)}
     function handleOpenPopup(popup) {
         setPopup(popup);
     }
@@ -37,7 +44,7 @@ function App() {
     }
   return (
     <>
-        <CurrentUserContext.Provider value={{ currentUser, handleUpdateUser, handleUpdateAvatar }}>
+        <CurrentUserContext.Provider value={{ currentUser, handleUpdateUser, handleUpdateAvatar, handleNewCard }}>
             <div className="page">
                 <Header />
                 <Main onOpenPopup={handleOpenPopup}

@@ -1,10 +1,21 @@
+import React, { useState, useContext, useRef } from 'react';
+import {CurrentUserContext} from "../../contexts/CurrentUserContext.js";
 export default function NewCard() {
+  const { handleNewCard } = useContext(CurrentUserContext);
+  const townName=useRef();
+  const townLink=useRef();
+
+  const handleSubmit = (e)=>{
+    e.preventDefault();
+    handleNewCard({newTown: townName.current.value, newTownLink: townLink.current.value})
+  }
   return (
     <form
       className="new-picture form"
       name="card-form"
       id="new-card-form"
       noValidate
+      onSubmit={handleSubmit}
     >
       <input
         type="text"
@@ -15,6 +26,7 @@ export default function NewCard() {
         placeholder="Title"
         required
         autoComplete="on"
+        ref={townName}
       />
       <span className="town-name-input-error form__input-error">
         Please, fill this field
@@ -26,11 +38,12 @@ export default function NewCard() {
         placeholder="Image URL"
         required
         autoComplete="on"
+        ref={townLink}
       />
       <span className="url-input-error form__input-error">
         Please, fill this field
       </span>
-      <button className="new-picture__button form__submit" type="Button">
+      <button className="new-picture__button form__submit">
         Save
       </button>
     </form>

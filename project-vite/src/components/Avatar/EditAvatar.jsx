@@ -1,11 +1,12 @@
-import React, { useState, useContext } from 'react'; 
+import React, { useState, useContext, useRef } from 'react';
 import {CurrentUserContext} from "../../contexts/CurrentUserContext.js";
 export default function EditAvatar() {
-  const {currentUser, handleUpdateUser, handleUpdateAvatar } = useContext(CurrentUserContext);
-  const handleSubmit = (event) => {
-    event.preventDefault(); 
+  const { handleUpdateAvatar } = useContext(CurrentUserContext);
 
-    handleUpdateAvatar();
+  const avatarRef = useRef();
+    const handleSubmit = (event) => {
+    event.preventDefault();
+    handleUpdateAvatar({avatar: avatarRef.current.value});
   };
   return (
     <form className="edit-pic form" noValidate onSubmit={handleSubmit}>
@@ -16,6 +17,7 @@ export default function EditAvatar() {
         required
         name="newImgUrl"
         autoComplete="on"
+        ref={avatarRef}
       />
       <span className="name-input-error form__input-error">
         Please, fill this field
