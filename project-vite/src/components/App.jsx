@@ -26,7 +26,9 @@ function App() {
             return [];
         });
     }
-
+    const handleUpdateAvatar = (data) => {
+        console.log("new Avatar set up")
+    }
     function handleOpenPopup(popup) {
         setPopup(popup);
     }
@@ -35,7 +37,7 @@ function App() {
     }
   return (
     <>
-        <CurrentUserContext.Provider value={{ currentUser, handleUpdateUser }}>
+        <CurrentUserContext.Provider value={{ currentUser, handleUpdateUser, handleUpdateAvatar }}>
             <div className="page">
                 <Header />
                 <Main onOpenPopup={handleOpenPopup}

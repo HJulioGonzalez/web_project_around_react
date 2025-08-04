@@ -64,6 +64,8 @@ class Api {
         });
         return await res.json();
     }
+
+    async setNewAvatar(){}
 }
 
 export const api = new Api({

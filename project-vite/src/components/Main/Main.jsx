@@ -11,7 +11,7 @@ import {CurrentUserContext} from "../../contexts/CurrentUserContext.js";
 export default function Main(props) {
   const {onClosePopup, onOpenPopup, popup} = props
   const [loadingState, setLoadingState] = useState(null);
-  const [editPicIconState, setEditPicIcon] = useState(null)
+  const [editPicIconState, setEditPicIcon] = useState(null);
   const [cards, setCards] = useState([]);
   const newCardPopup = { title: "New Place", children: <NewCard /> };
   const editProfileInfo = { title: "Edit Profile", children: <EditProfile /> };
@@ -76,12 +76,11 @@ export default function Main(props) {
               src={avatar}
               alt="AuthorPicture"
               className="author__picture"
-              onClick={() => onOpenPopup(editProfileImg)
-              }
-              onMouseOver={handleEditIcon}
-              onMouseLeave={handleEditIconClose}
+              
+              onMouseEnter={handleEditIcon}
           />
-          {editPicIconState && (<div className="author__picture-edit-icon"></div>)}
+          {editPicIconState && (<div className="author__picture-edit-icon" onMouseLeave={handleEditIconClose} onClick={() => onOpenPopup(editProfileImg)
+              }></div>)}
           <div className="author__info">
             <div className="author__info-title">
               <p className="author__info-name">{name}</p>
