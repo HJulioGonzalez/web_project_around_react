@@ -14,7 +14,7 @@ export default function EditProfile() {
   const handleSubmit = (event) => {
     event.preventDefault(); 
 
-    handleUpdateUser({ name, about: description }); // Actualiza la información del usuario
+    handleUpdateUser({ name, about: description });
   };
   return (
     <form className="edit-info form" noValidate onSubmit={handleSubmit}>

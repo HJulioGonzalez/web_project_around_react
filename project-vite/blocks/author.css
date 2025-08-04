@@ -16,10 +16,7 @@
 .author__picture-edit-icon {
   width: 120px;
   height: 120px;
-  background: url(../images/editPic.svg);
-  background-repeat: no-repeat;
-  background-position: center;
-  background-color: rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.8) url(../images/editPic.svg) no-repeat center;
   position: absolute;
 }
 

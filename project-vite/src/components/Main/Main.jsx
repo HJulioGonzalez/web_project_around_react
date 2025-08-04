@@ -9,9 +9,9 @@ import InfoLoading from "../infoLoading/infoLoading";
 import {CurrentUserContext} from "../../contexts/CurrentUserContext.js";
 
 export default function Main(props) {
-  const {whatever} = props
-  const [popup, setPopup] = useState(null);
-  const [loadingState, setLoadingState] = useState(null)
+  const {onClosePopup, onOpenPopup, popup} = props
+  const [loadingState, setLoadingState] = useState(null);
+  const [editPicIconState, setEditPicIcon] = useState(null)
   const [cards, setCards] = useState([]);
   const newCardPopup = { title: "New Place", children: <NewCard /> };
   const editProfileInfo = { title: "Edit Profile", children: <EditProfile /> };
@@ -19,9 +19,8 @@ export default function Main(props) {
     title: "Change Profile Photo",
     children: <EditAvatar />,
   };
-  // const userInfo = React.useContext(CurrentUserContext);
   const { currentUser } = React.useContext(CurrentUserContext);
-  const {name, about, avatar, _id} = currentUser;
+  const {name, about, avatar} = currentUser;
   useEffect(() => {
     handleLoading(true);
     api.getCardInfo().then(data=>{
@@ -36,17 +35,19 @@ export default function Main(props) {
     })
 
   }, []);
-  function handleOpenPopup(popup) {
-    setPopup(popup);
-  }
-  function handleClosePopup() {
-    setPopup(null);
-  }
   function handleLoading(loadingState){
     setLoadingState(loadingState)
   }
   function handleCloseLoading(){
     setLoadingState(null)
+  }
+
+  function handleEditIcon(){
+    setEditPicIcon(true)
+  }
+
+  function handleEditIconClose(){
+    setEditPicIcon(null)
   }
 
   async function handleCardLike(card){
@@ -60,7 +61,7 @@ export default function Main(props) {
 
   async function handleCardDelete(card){
     console.log("this card will be deleted: ", card.name)
-    await api.deleteCard(card._id).then((deletedCard) => setCards((state)=> state.filter((currentCard)=>currentCard._id !== card._id))).catch((err) => {
+    await api.deleteCard(card._id).then(() => setCards((state)=> state.filter((currentCard)=>currentCard._id !== card._id))).catch((err) => {
       console.log(`Error: ${err} - ${err.status}`);
       return [];
     })
@@ -75,29 +76,30 @@ export default function Main(props) {
               src={avatar}
               alt="AuthorPicture"
               className="author__picture"
-              onClick={() => {
-                handleOpenPopup(editProfileImg);
-                whatever();
+              onClick={() => onOpenPopup(editProfileImg)
               }
-              }
+              onMouseOver={handleEditIcon}
+              onMouseLeave={handleEditIconClose}
           />
+          {editPicIconState && (<div className="author__picture-edit-icon"></div>)}
           <div className="author__info">
             <div className="author__info-title">
               <p className="author__info-name">{name}</p>
               <div
                   className="author__editbutton"
-                  onClick={() => handleOpenPopup(editProfileInfo)}
+                  onClick={() => onOpenPopup(editProfileInfo)
+                  }
               ></div>
             </div>
             <p className="author__info-job">{about}</p>
             <div
                 className="author__add-button author__add-button_resolution_725"
-                onClick={() => handleOpenPopup(newCardPopup)}
+                onClick={() => onOpenPopup(newCardPopup)}
             ></div>
           </div>
           <div
               className="author__add-button author__add-button_resolution_1180"
-              onClick={() => handleOpenPopup(newCardPopup)}
+              onClick={() => onOpenPopup(newCardPopup)}
           ></div>
         </>)}
 
@@ -108,7 +110,7 @@ export default function Main(props) {
         ))}
       </ul>
       {popup && (
-        <Popup onClose={handleClosePopup} title={popup.title}>
+        <Popup onClose={onClosePopup} title={popup.title}>
           {popup.children}
         </Popup>
       )}
