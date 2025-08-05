@@ -9,13 +9,13 @@ import {CurrentUserContext} from "../contexts/CurrentUserContext.js"
 function App() {
     const [currentUser, setCurrentUser] = useState("");
     const [popup, setPopup] = useState(null);
-    const [cards2, setCards2] = useState([]);
-    const [loadingState2, setLoadingState2] = useState(null);
+    const [cards, setCards] = useState([]);
+    const [loadingState, setLoadingState] = useState(null);
     useEffect(() => {
-        handleLoading2(true);
+        handleLoading(true);
     api.getUserInfo().then(data=>{
             setTimeout(()=>{
-                handleCloseLoading2();
+                handleCloseLoading();
                 setCurrentUser(data);
             },3000)
         }).catch((err) => {
@@ -24,7 +24,7 @@ function App() {
         });
     api.getCardInfo().then(data=>{
             setTimeout(()=>{
-                setCards2(data);
+                setCards(data);
                 console.log(data);
             },3000)
         }).catch((err) => {
@@ -57,22 +57,22 @@ function App() {
     function handleClosePopup() {
         setPopup(null);
     }
-    function handleLoading2(loadingState){
-        setLoadingState2(loadingState)
+    function handleLoading(loadingState){
+        setLoadingState(loadingState)
     }
-    function handleCloseLoading2(){
-        setLoadingState2(null)
+    function handleCloseLoading(){
+        setLoadingState(null)
     }
-    async function handleCardLike2(card){
+    async function handleCardLike(card){
         await api.changeLikeStatus(card._id, !card.isLiked).then((newCard) => {
-            setCards2((state) => state.map((currentCard) => currentCard._id === card._id ? newCard : currentCard));
+            setCards((state) => state.map((currentCard) => currentCard._id === card._id ? newCard : currentCard));
         }).catch((err) => {
             console.log(`Error: ${err} - ${err.status}`);
             return [];
         })
     }
-    async function handleCardDelete2(card){
-        await api.deleteCard(card._id).then(() => setCards2((state)=> state.filter((currentCard)=>currentCard._id !== card._id))).catch((err) => {
+    async function handleCardDelete(card){
+        await api.deleteCard(card._id).then(() => setCards((state)=> state.filter((currentCard)=>currentCard._id !== card._id))).catch((err) => {
             console.log(`Error: ${err} - ${err.status}`);
             return [];
         })
@@ -85,10 +85,10 @@ function App() {
                 <Main onOpenPopup={handleOpenPopup}
                       onClosePopup={handleClosePopup}
                       popup={popup}
-                      cards={cards2}
-                      onLikeCard={handleCardLike2}
-                      onDeleteCard={handleCardDelete2}
-                      loadingState2={loadingState2}
+                      cards={cards}
+                      onLikeCard={handleCardLike}
+                      onDeleteCard={handleCardDelete}
+                      loadingState={loadingState}
                       />
                 <Footer />
             </div>

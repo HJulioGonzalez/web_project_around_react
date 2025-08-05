@@ -9,7 +9,7 @@ import InfoLoading from "../infoLoading/infoLoading";
 import {CurrentUserContext} from "../../contexts/CurrentUserContext.js";
 
 export default function Main(props) {
-  const {onClosePopup, onOpenPopup, popup, cards, onLikeCard, onDeleteCard, loadingState2} = props
+  const {onClosePopup, onOpenPopup, popup, cards, onLikeCard, onDeleteCard, loadingState} = props
   const [editPicIconState, setEditPicIcon] = useState(null);
   const newCardPopup = { title: "New Place", children: <NewCard /> };
   const editProfileInfo = { title: "Edit Profile", children: <EditProfile /> };
@@ -31,8 +31,8 @@ export default function Main(props) {
   return (
     <main className="content">
       <div className="author">
-        {loadingState2 && (<InfoLoading/>)}
-        {!loadingState2 && (<>
+        {loadingState && (<InfoLoading/>)}
+        {!loadingState && (<>
           <img
               src={avatar}
               alt="AuthorPicture"
