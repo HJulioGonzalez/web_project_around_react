@@ -9,7 +9,7 @@ import InfoLoading from "../infoLoading/infoLoading";
 import {CurrentUserContext} from "../../contexts/CurrentUserContext.js";
 
 export default function Main(props) {
-  const {onClosePopup, onOpenPopup, popup} = props
+  const {onClosePopup, onOpenPopup, popup, cards2} = props
   const [loadingState, setLoadingState] = useState(null);
   const [editPicIconState, setEditPicIcon] = useState(null);
   const [cards, setCards] = useState([]);
@@ -26,8 +26,7 @@ export default function Main(props) {
     api.getCardInfo().then(data=>{
       setTimeout(()=>{
         handleCloseLoading();
-        setCards(data);
-        console.log(data)
+        //setCards(data);
       },3000)
     }).catch((err) => {
       console.log(`Error: ${err} - ${err.status}`);
@@ -86,7 +85,7 @@ export default function Main(props) {
               <p className="author__info-name">{name}</p>
               <div
                   className="author__editbutton"
-                  onClick={() => onOpenPopup(editProfileInfo)
+                  onClick={() => {onOpenPopup(editProfileInfo); console.log(cards2)}
                   }
               ></div>
             </div>
