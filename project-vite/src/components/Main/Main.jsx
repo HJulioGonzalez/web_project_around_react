@@ -9,10 +9,8 @@ import InfoLoading from "../infoLoading/infoLoading";
 import {CurrentUserContext} from "../../contexts/CurrentUserContext.js";
 
 export default function Main(props) {
-  const {onClosePopup, onOpenPopup, popup, cards2} = props
-  const [loadingState, setLoadingState] = useState(null);
+  const {onClosePopup, onOpenPopup, popup, cards, onLikeCard, onDeleteCard, loadingState2} = props
   const [editPicIconState, setEditPicIcon] = useState(null);
-  const [cards, setCards] = useState([]);
   const newCardPopup = { title: "New Place", children: <NewCard /> };
   const editProfileInfo = { title: "Edit Profile", children: <EditProfile /> };
   const editProfileImg = {
@@ -21,25 +19,6 @@ export default function Main(props) {
   };
   const { currentUser } = React.useContext(CurrentUserContext);
   const {name, about, avatar} = currentUser;
-  useEffect(() => {
-    handleLoading(true);
-    api.getCardInfo().then(data=>{
-      setTimeout(()=>{
-        handleCloseLoading();
-        //setCards(data);
-      },3000)
-    }).catch((err) => {
-      console.log(`Error: ${err} - ${err.status}`);
-      return [];
-    })
-
-  }, []);
-  function handleLoading(loadingState){
-    setLoadingState(loadingState)
-  }
-  function handleCloseLoading(){
-    setLoadingState(null)
-  }
 
   function handleEditIcon(){
     setEditPicIcon(true)
@@ -49,28 +28,11 @@ export default function Main(props) {
     setEditPicIcon(null)
   }
 
-  async function handleCardLike(card){
-    await api.changeLikeStatus(card._id, !card.isLiked).then((newCard) => {
-        setCards((state) => state.map((currentCard) => currentCard._id === card._id ? newCard : currentCard));
-    }).catch((err) => {
-      console.log(`Error: ${err} - ${err.status}`);
-      return [];
-    })
-  }
-
-  async function handleCardDelete(card){
-    console.log("this card will be deleted: ", card.name)
-    await api.deleteCard(card._id).then(() => setCards((state)=> state.filter((currentCard)=>currentCard._id !== card._id))).catch((err) => {
-      console.log(`Error: ${err} - ${err.status}`);
-      return [];
-    })
-  }
-
   return (
     <main className="content">
       <div className="author">
-        {loadingState && (<InfoLoading/>)}
-        {!loadingState && (<>
+        {loadingState2 && (<InfoLoading/>)}
+        {!loadingState2 && (<>
           <img
               src={avatar}
               alt="AuthorPicture"
@@ -85,7 +47,7 @@ export default function Main(props) {
               <p className="author__info-name">{name}</p>
               <div
                   className="author__editbutton"
-                  onClick={() => {onOpenPopup(editProfileInfo); console.log(cards2)}
+                  onClick={() => onOpenPopup(editProfileInfo)
                   }
               ></div>
             </div>
@@ -104,7 +66,7 @@ export default function Main(props) {
       </div>
       <ul className="venues">
         {cards.map((card) => (
-          <Card key={card._id} card={card} onCardLike={()=>{handleCardLike(card)}} onCardDelete={()=>{handleCardDelete(card)}} />
+          <Card key={card._id} card={card} onCardLike={()=>{onLikeCard(card)}} onCardDelete={()=>{onDeleteCard(card)}} />
         ))}
       </ul>
       {popup && (
