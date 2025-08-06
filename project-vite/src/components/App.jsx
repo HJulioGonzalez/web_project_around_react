@@ -50,7 +50,16 @@ function App() {
         });
 
     }
-    const handleNewCard = (data) => {console.log(data)}
+    const handleNewCard = (data) => {
+      
+      api.setNewCard(data).then(newCard=>{
+            setCards([newCard, ...cards]);
+            handleClosePopup();
+            }).catch((err) => {
+            console.log(`Error: ${err} - ${err.status}`);
+            return [];
+        })
+    }
     function handleOpenPopup(popup) {
         setPopup(popup);
     }

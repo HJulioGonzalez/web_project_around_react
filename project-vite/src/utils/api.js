@@ -79,6 +79,22 @@ class Api {
         });
         return await res.json();
     }
+
+    async setNewCard(newCard){
+        this._newPlaceLink = `${this._baseUrl}/cards`;
+        const res = await fetch(this._newPlaceLink, {
+            method: "POST",
+            headers: {
+                authorization: this._headers.authorization,
+                 "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+        name: newCard.newTown,
+        link: newCard.newTownLink,
+      })
+        });
+        return await res.json();
+    }
 }
 
 export const api = new Api({

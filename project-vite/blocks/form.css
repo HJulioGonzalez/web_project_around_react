@@ -4,7 +4,7 @@
 
 .form__input-error {
   display: flex;
-  color: rgba(0, 0, 0, 0);
+  color:#c4c4c4;
   font-size: 12px;
   font-family: "Inter Regular";
   line-height: 1.21;
@@ -27,6 +27,12 @@
 }
 
 .form__submit_inactive {
+  background-color: #ffffff;
+  color: #cccccc;
+  border: 1px rgba(0, 0, 0, 0.2) solid;
+}
+
+.form__submit_inactive:hover {
   background-color: #ffffff;
   color: #cccccc;
   border: 1px rgba(0, 0, 0, 0.2) solid;
