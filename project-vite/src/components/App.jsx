@@ -86,9 +86,12 @@ function App() {
             return [];
         })
     }
+    function formValidation(){
+        console.log("habib")
+    }
   return (
     <>
-        <CurrentUserContext.Provider value={{ currentUser, handleUpdateUser, handleUpdateAvatar, handleNewCard }}>
+        <CurrentUserContext.Provider value={{ currentUser, handleUpdateUser, handleUpdateAvatar, handleNewCard, formValidation }}>
             <div className="page">
                 <Header />
                 <Main onOpenPopup={handleOpenPopup}

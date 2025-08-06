@@ -1,17 +1,19 @@
 import React, { useState, useContext, useRef } from 'react';
 import {CurrentUserContext} from "../../contexts/CurrentUserContext.js";
 export default function EditAvatar() {
-  const { handleUpdateAvatar } = useContext(CurrentUserContext);
-  const [linkInputState, setLinkInputState] = useState(true)
+  const { handleUpdateAvatar, formValidation } = useContext(CurrentUserContext);
+  const [fieldValidationState, setFieldValidationState] = useState(false);
+  const [validationMessage, setValidationMessage] = useState("(*) mandatory field");
   const avatarRef = useRef();
+  const disableButtonSubmitClass = !fieldValidationState ? "form__submit_inactive" : "form__submit_active"
     const handleSubmit = (event) => {
     event.preventDefault();
     handleUpdateAvatar({avatar: avatarRef.current.value});
   };
-  function handleValidationLink(e){
-    setLinkInputState(e.target.validity.valid);
-    return
-  };
+  function handleValidationField(e){
+    setFieldValidationState(e.target.validity.valid);
+    setValidationMessage(`❌ ${e.target.validationMessage}`)
+  }
   return (
     <form className="edit-pic form" noValidate onSubmit={handleSubmit}>
       <input
@@ -22,12 +24,12 @@ export default function EditAvatar() {
         name="newImgUrl"
         autoComplete="on"
         ref={avatarRef}
-        onChange={(e)=>{handleValidationLink(e)}}
+        onChange={(e)=>{handleValidationField(e)}}
       />
-      <span className="name-input-error form__input-error">
-        {!linkInputState && "Please, enter a valid URL"}
+      <span className={`name-input-error ${fieldValidationState?'form__input-valid':'form__input-error'}`}>
+        {fieldValidationState?"✅ Valid URL":validationMessage}
       </span>
-      <button disabled={linkInputState? false: true} className={`edit-pic__button edit-pic__submit form__submit_inactive ${linkInputState && "form__submit"}`}>
+      <button className={`edit-pic__button edit-pic__submit ${disableButtonSubmitClass}`} disabled={!fieldValidationState}>
         Save
       </button>
     </form>
