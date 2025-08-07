@@ -7,7 +7,7 @@ import DeleteConfirmation from "../DeleteConfirmation/DeleteConfirmation";
 export default function Card(props) {
   const [popup, setPopup] = useState(null);
   const { card, onCardLike, onCardDelete } = props;
-  const { name, link, isLiked, _id } = card;
+  const { name, link, isLiked } = card;
 
   const cardLikeButtonClassName = `venue__info-likebutton ${
         isLiked ? "venue__info-likebutton_liked" : ''

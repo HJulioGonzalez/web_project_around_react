@@ -21,7 +21,7 @@
 
 .popup-delete__title {
   font-size: 24px;
-  font-family: "Inter Black";
+  font-family: "Inter Black", serif;
   line-height: 1.21;
   height: 23px;
 }
