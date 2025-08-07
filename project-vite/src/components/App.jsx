@@ -3,7 +3,7 @@ import "../../src/index.css";
 import Header from "./Header/Header";
 import Main from "./Main/Main";
 import Footer from "./Footer/Footer";
-import Card from "../components/Card/Card";
+
 import {api} from "../utils/api.js";
 import {CurrentUserContext} from "../contexts/CurrentUserContext.js"
 function App() {
@@ -86,12 +86,9 @@ function App() {
             return [];
         })
     }
-    function formValidation(){
-        console.log("habib")
-    }
   return (
     <>
-        <CurrentUserContext.Provider value={{ currentUser, handleUpdateUser, handleUpdateAvatar, handleNewCard, formValidation }}>
+        <CurrentUserContext.Provider value={{ currentUser, handleUpdateUser, handleUpdateAvatar, handleNewCard }}>
             <div className="page">
                 <Header />
                 <Main onOpenPopup={handleOpenPopup}
@@ -101,6 +98,7 @@ function App() {
                       onLikeCard={handleCardLike}
                       onDeleteCard={handleCardDelete}
                       loadingState={loadingState}
+
                       />
                 <Footer />
             </div>

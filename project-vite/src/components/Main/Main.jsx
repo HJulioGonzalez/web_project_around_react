@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Popup from "./components/Popup/Popup";
 import NewCard from "../NewCard/NewCard";
 import EditProfile from "../EditProfile/EditProfile";
 import EditAvatar from "../Avatar/EditAvatar";
 import Card from "../Card/Card";
-import {api} from "../../utils/api.js";
 import InfoLoading from "../infoLoading/infoLoading";
 import {CurrentUserContext} from "../../contexts/CurrentUserContext.js";
 

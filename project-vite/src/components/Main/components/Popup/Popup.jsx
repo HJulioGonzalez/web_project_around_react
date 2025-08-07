@@ -4,9 +4,7 @@ export default function Popup(props) {
   function outsideClosing(e) {
     e.currentTarget === e.target && onClose();
   }
-  function outsideClosing2(e) {
-    console.log("habib");
-  }
+
   useEffect(() => {
     const escClosing = (event) => {
       event.key === "Escape" && onClose();

@@ -1,12 +1,17 @@
-import React, { useState, useContext } from 'react'; 
+import React, { useState, useContext, useRef } from 'react';
 import {CurrentUserContext} from "../../contexts/CurrentUserContext.js";
 export default function EditProfile() {
   const {currentUser, handleUpdateUser } = useContext(CurrentUserContext);
   const [name, setName] = useState(currentUser.name);
-  const [nameInputState, setNameInputState] = useState(true);
-  const [jobInputState, setJobInputState] = useState(true)
   const [description, setDescription] = useState(currentUser.about);
-  const handleNameChange = (e) => {
+    const [nameValidationState, setNameValidationState] = useState(false);
+    const [jobValidationState, setJobValidationState] = useState(false);
+    const [nameValidationMessage, setNameValidationMessage] = useState("(*) mandatory field");
+    const [jobValidationMessage, setJobValidationMessage] = useState("(*) mandatory field");
+    const nameRef = useRef();
+    const jobRef = useRef();
+    const disableButtonSubmitClass = !(nameValidationState && jobValidationState) ? "form__submit_inactive" : "form__submit_active"
+    const handleNameChange = (e) => {
     setName(e.target.value)
   };
   const handleDescriptionChange = (e)=>{
@@ -17,49 +22,52 @@ export default function EditProfile() {
 
     handleUpdateUser({ name, about: description });
   };
-  function handleValidationName(e){
-    setNameInputState(e.target.validity.valid);
-  };
-  function handleValidationJob(e){
-    setJobInputState(e.target.validity.valid);
-  }
+  function handleValidationField(field){
+      if (field.name === "name") {
+          setNameValidationState(field.validity.valid);
+          setNameValidationMessage(`❌ ${field.validationMessage}`)
+      } else {
+          setJobValidationState(field.validity.valid);
+          setJobValidationMessage(`❌ ${field.validationMessage}`)
+      }
+    }
   return (
     <form className="edit-info form" noValidate onSubmit={handleSubmit}>
       <input
         type="text"
         className="edit-info__name form__input"
         placeholder="Name"
-        minLength="2"
+        minLength="5"
         maxLength="40"
         required
         name="name"
-        value={name}
+        ref={nameRef}
         autoComplete="on" onChange={(e)=>{
           handleNameChange(e);
-          handleValidationName(e);
+          handleValidationField(nameRef.current)
         }}
       />
-      <span className="name-input-error form__input-error">
-        {!nameInputState && "Must use more than (1) character"}
+      <span className={`name-input-error form__input-error ${nameValidationState?'form__input-valid':'form__input-error'}`}>
+        {nameValidationState?"✅ Valid name text":nameValidationMessage}
       </span>
       <input
         type="text"
         className="edit-info__job form__input"
         placeholder="About me"
-        minLength="2"
-        maxLength="200"
+        minLength="5"
+        maxLength="100"
         required
         name="job"
-        value={description}
+        ref={jobRef}
         autoComplete="on" onChange={(e)=>{
           handleDescriptionChange(e);
-          handleValidationJob(e);
+          handleValidationField(jobRef.current);
         }}
       />
-      <span className="job-input-error form__input-error">
-        {!jobInputState && "Must use more than (1) character"}
+      <span className={`job-input-error form__input-error ${jobValidationState?'form__input-valid':'form__input-error'}`}>
+        {jobValidationState?"✅ Valid job text":jobValidationMessage}
       </span>
-      <button className={`edit-info__button edit-info__submit ${nameInputState && jobInputState? "form__submit" : "form__submit_inactive"}`}>
+      <button className={`edit-info__button edit-info__submit ${disableButtonSubmitClass}`}>
         Save
       </button>
     </form>

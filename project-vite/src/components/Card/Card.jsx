@@ -1,7 +1,8 @@
 import Popup from "../Main/components/Popup/Popup";
 import ImagePopup from "../ImagePopup/ImagePopup";
 import { useState } from "react";
-import {api} from "../../utils/api.js";
+import DeleteConfirmation from "../DeleteConfirmation/DeleteConfirmation";
+
 
 export default function Card(props) {
   const [popup, setPopup] = useState(null);
@@ -21,10 +22,10 @@ export default function Card(props) {
     onCardLike();
   }
 
-  function handleDeleteClick(){
-    onCardDelete();
+  const DeleteConfirmationPopup = {
+    title:"are you sure?",
+    children:<DeleteConfirmation onConfirmationDelete={onCardDelete}/>,
   }
-
   const ImgPopup = {
     title: "",
     children: (
@@ -33,7 +34,7 @@ export default function Card(props) {
   };
   return (
     <li className="venue">
-      <button className="venue__del-button" onClick={handleDeleteClick}></button>
+      <button className="venue__del-button" onClick={() => handleOpenPopup(DeleteConfirmationPopup)}></button>
       <img
         className="venue__picture"
         src={link}

@@ -1,7 +1,7 @@
 import React, { useState, useContext, useRef } from 'react';
 import {CurrentUserContext} from "../../contexts/CurrentUserContext.js";
 export default function EditAvatar() {
-  const { handleUpdateAvatar, formValidation } = useContext(CurrentUserContext);
+  const { handleUpdateAvatar } = useContext(CurrentUserContext);
   const [fieldValidationState, setFieldValidationState] = useState(false);
   const [validationMessage, setValidationMessage] = useState("(*) mandatory field");
   const avatarRef = useRef();
@@ -24,7 +24,7 @@ export default function EditAvatar() {
         name="newImgUrl"
         autoComplete="on"
         ref={avatarRef}
-        onChange={(e)=>{handleValidationField(e)}}
+        onChange={handleValidationField}
       />
       <span className={`name-input-error ${fieldValidationState?'form__input-valid':'form__input-error'}`}>
         {fieldValidationState?"✅ Valid URL":validationMessage}

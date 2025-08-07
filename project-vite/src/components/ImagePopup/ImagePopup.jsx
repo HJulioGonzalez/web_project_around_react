@@ -1,5 +1,3 @@
-import Card from "../Card/Card";
-import { useEffect } from "react";
 export default function ImagePopup(props) {
   const { ImgLink, ImgName, onClose } = props;
   return (
